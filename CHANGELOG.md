@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+### 修复
+
+- Dashboard 在 Chromium 90 等旧版浏览器中因缺少 `Object.hasOwn` 而无法启动
+
 ## [1.0.1] - 2026-09-18
 
 ### 新增
