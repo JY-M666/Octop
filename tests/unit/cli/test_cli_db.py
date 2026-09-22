@@ -81,6 +81,7 @@ def test_agent_list_offline_flag(fake_home: Path) -> None:
     assert result.exit_code == 0, result.output
     assert "ag1" in result.output
 
+
 def test_user_create_enforces_password_policy(fake_home: Path) -> None:
     _bootstrap(fake_home)
     runner = CliRunner()
