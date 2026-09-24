@@ -7,6 +7,7 @@
 ## [Unreleased]
 
 ### 修复
+- 导入工作区 zip 时跳过 Octop 自有的 `_builtin_skills/` 条目：该前缀不允许删除或移动，归档里的同名文件会留下用户无法移除的技能
 - 工作区写入接口补上 `_builtin_skills` 保护：`PUT /workspace/file` 和 `POST /workspace/upload` 此前可以往 Octop 内置技能目录里写文件（新建目录、删除、移动、文档编辑都拒绝），写进去的文件会被当作内置技能出现在技能列表里，而删除/移动接口对该前缀一律 403，所以再也清不掉
 
 - `wiki_summary` 的 `lang` 不再被拼进请求主机名：此前传 `evil.com#` 会真的向 `https://evil.com` 发请求（`localhost:8443/` 则打本机端口），并把对方返回的摘要回显进聊天；现只接受 `zh` / `en` / `zh-classical` 这类裸子域标签，其余按「语言代码无效」返回错误卡片
