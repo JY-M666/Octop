@@ -7,6 +7,7 @@
 ## [Unreleased]
 
 ### 修复
+- 会话列表接口 `GET /api/agents/{id}/threads` 的 `limit` 增加 1–200 边界（与消息分页沿用同一上限）：此前负数会被 SQLite 解释成「不限制」，一次返回该用户的全部会话，`limit=0` 又返回空列表；越界请求现在统一拒绝
 
 - 填写 IPv6 字面量地址的 MCP / OAuth 端点此前无法连通：出站请求固定 IP 时会把 URL 重建为 httpx 无法解析的形式（`InvalidURL`），同时丢弃路径参数；现按原样保留两者
 - 会话级 HITL「跳过审批」不再按进程缓存：`octop run --workers N`（或 CLI 与服务并发）时，另一个进程里撤销的跳过仍会持续自动放行工具调用，新授予的也可能不生效；改为每次判定都以 `threads.hitl_policy` 为准
