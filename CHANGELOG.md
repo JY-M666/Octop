@@ -7,6 +7,8 @@
 ## [Unreleased]
 
 ### 修复
+
+- 填写 IPv6 字面量地址的 MCP / OAuth 端点此前无法连通：出站请求固定 IP 时会把 URL 重建为 httpx 无法解析的形式（`InvalidURL`），同时丢弃路径参数；现按原样保留两者
 - 会话级 HITL「跳过审批」不再按进程缓存：`octop run --workers N`（或 CLI 与服务并发）时，另一个进程里撤销的跳过仍会持续自动放行工具调用，新授予的也可能不生效；改为每次判定都以 `threads.hitl_policy` 为准
 - 用户角色与禁用/删除状态改为按请求读库：多 worker（`octop run --workers N`）或 CLI 离线改写同一 SQLite 时，在另一个进程里被降级、禁用或删除的用户立即失效（#1102）
 - 导入工作区 zip 时跳过 Octop 自有的 `_builtin_skills/` 条目：该前缀不允许删除或移动，归档里的同名文件会留下用户无法移除的技能
