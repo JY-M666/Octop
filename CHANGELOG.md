@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+### 新增
+
+- 企查查内置连接器恢复一键 OAuth：保留 internal HTTP 工具加载及已有 API Key，支持五类资源共享刷新与远程解绑；注明系统浏览器及公网 HTTPS 回调要求。
+
 ### 变更
 - 运行时依赖改为 `octop-harness[all]` / `octop-gateway` / `octop-memory` / `octop-browser` 1.0.0（原 `orcakit-harness-agent` / `harness-*`）；文档、UI 文案与生成路径同步改为 `octop-*`（`~/.harness-browser` 仅作迁移/拒绝源）
 
