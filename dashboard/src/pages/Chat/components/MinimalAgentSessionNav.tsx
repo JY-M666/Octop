@@ -789,7 +789,12 @@ export default function MinimalAgentSessionNav({
               </span>
               <button
                 type="button"
-                className={styles.minimalAgentFolderBtn}
+                className={`${styles.minimalAgentFolderBtn} ${
+                  agent.agent_id === activeAgentId
+                    ? styles.minimalAgentFolderBtnActive
+                    : ""
+                }`}
+                aria-current={agent.agent_id === activeAgentId ? "page" : undefined}
                 onClick={() => openFolderAndSelect(agent.agent_id)}
               >
                 <span className={styles.agentNameCluster}>
