@@ -146,6 +146,16 @@ describe("minimal expert conversation pagination", () => {
     expect(within(sharedAfter).queryByText("展开更多")).toBeNull();
   });
 
+  it("marks the active expert as the current navigation page", async () => {
+    renderNav({ activeAgentId: "shared" });
+    await screen.findByText("shared 会话 10");
+
+    const activeRow = screen.getByText("共享专家").closest("button");
+    const inactiveRow = screen.getByText("其他专家").closest("button");
+    expect(activeRow).toHaveAttribute("aria-current", "page");
+    expect(inactiveRow).not.toHaveAttribute("aria-current");
+  });
+
   it("keeps the expand button available after a request fails", async () => {
     renderNav();
     await screen.findByText("shared 会话 10");
